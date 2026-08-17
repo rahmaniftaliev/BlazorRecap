@@ -1,6 +1,6 @@
 ﻿namespace BlazorFrontEndProject.Models
 {
-    public class ProductLiseViewModel
+    public class ProductListViewModel
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
