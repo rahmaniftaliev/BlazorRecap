@@ -6,10 +6,10 @@ namespace BlazorFrontEndProject.Services
     {
         Task<ProductListViewModel[]> GetProducts();
 
-        Task Add(ProductListViewModel productLiseViewModel);
+        Task Add(ProductViewModel ProductViewModel);
 
-        Task Save(ProductListViewModel productLiseViewModel);
+        Task Save(ProductViewModel productLiseViewModel);
 
-        Task<ProductListViewModel> GetProductById(int productId);
+        Task<ProductViewModel> GetProductById(int productId);
     }
 }

@@ -13,14 +13,14 @@ namespace BlazorFrontEndProject.Services
             _httpClient = httpClient;
         }
 
-        public async Task Add(ProductListViewModel productLiseViewModel)
+        public async Task Add(ProductViewModel ProductViewModel)
         {
-            await _httpClient.PostAsJsonAsync("https://localhost:44347/api/products/add", productLiseViewModel);
+            await _httpClient.PostAsJsonAsync("https://localhost:44347/api/products/add", ProductViewModel);
         }
 
-        public Task<ProductListViewModel> GetProductById(int productId)
+        public Task<ProductViewModel> GetProductById(int productId)
         {
-            return _httpClient.GetFromJsonAsync<ProductListViewModel>($"https://localhost:44347/api/products/{productId}");
+            return _httpClient.GetFromJsonAsync<ProductViewModel>($"https://localhost:44347/api/products/getbyid?productid={productId}");
         }
 
         public Task<ProductListViewModel[]> GetProducts()
@@ -28,9 +28,9 @@ namespace BlazorFrontEndProject.Services
             return _httpClient.GetFromJsonAsync<ProductListViewModel[]>("https://localhost:44347/api/products/getall");
         }
 
-        public async Task Save(ProductListViewModel productLiseViewModel)
+        public async Task Save(ProductViewModel ProductViewModel)
         {
-            await _httpClient.PostAsJsonAsync("https://localhost:44347/api/products/add", productLiseViewModel);
+            await _httpClient.PostAsJsonAsync("https://localhost:44347/api/products/add", ProductViewModel);
         }
     }
 }

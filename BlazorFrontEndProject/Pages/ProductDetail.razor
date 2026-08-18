@@ -1,0 +1,30 @@
+﻿@page "/productdetail/{productid:int}"
+@using BlazorFrontEndProject.Models
+@using BlazorFrontEndProject.Services
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject NavigationManager NavigationManager
+<h3>ProductDetail</h3>
+
+@code {
+    [Parameter]
+    public int ProductId { get; set; }
+
+    ProductViewModel product;
+    CategoryListViewModel[] categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await ProductService.GetProductById(ProductId);
+        categories = await CategoryService.GetCategories();
+    }
+
+
+    private void HandleSave()
+    {
+        ProductService.Save(product);
+        NavigationManager.NavigateTo("/productlist");
+    }
+
+
+}
