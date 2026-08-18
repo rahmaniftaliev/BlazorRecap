@@ -4,7 +4,27 @@
 @inject IProductService ProductService
 @inject ICategoryService CategoryService
 @inject NavigationManager NavigationManager
-<h3>ProductDetail</h3>
+
+@if(product != null)
+{
+    <h3 class="card-header">Product for @product.ProductName</h3>
+    <EditForm Model="@product" OnValidSubmit="@HandleSave"></EditForm>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <InputText PlaceHolder="Product Name" Class="form-control" id="productName" @bind-Value="@product.ProductName" />
+    </div>
+    <div class="form-group">
+        <InputNumber PlaceHolder="Price" Class="form-control" id="unitPrice" @bind-Value="@product.UnitPrice"   />
+    </div>
+    <div class="form-group">
+        <InputTextArea PlaceHolder="Quantity Per Unit" Class="form-control" id="quantityPerUnit" @bind-Value="@product.QuantityPerUnit" />
+    </div>
+    <div class="form-group">
+        <InputNumber PlaceHolder="Units In Stock" Class="form-control" id="unitsInStock" @bind-Value="@product.UnitsInStock" />
+    </div>
+}
+
 
 @code {
     [Parameter]
