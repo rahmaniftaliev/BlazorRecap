@@ -1,6 +1,7 @@
 ﻿@page "/productdetail/{productid:int}"
 @using BlazorFrontEndProject.Models
 @using BlazorFrontEndProject.Services
+@using BlazorFrontEndProject.Utilities
 @inject IProductService ProductService
 @inject ICategoryService CategoryService
 @inject NavigationManager NavigationManager
@@ -22,6 +23,19 @@
     </div>
     <div class="form-group">
         <InputNumber PlaceHolder="Units In Stock" Class="form-control" id="unitsInStock" @bind-Value="@product.UnitsInStock" />
+    </div>
+    <div class="form-group">
+        @if(categories != null)
+        {
+            <InputSelectNumber Class="form-control" id="categoryId" @bind-Value="@product.CategoryId">
+
+                @foreach (var category in categories)
+                {
+                    <option value="@category.CategoryId">@category.CategoryName</option>
+                }
+
+            </InputSelectNumber>
+        }
     </div>
 }
 
