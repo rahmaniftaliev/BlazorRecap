@@ -6,37 +6,43 @@
 @inject ICategoryService CategoryService
 @inject NavigationManager NavigationManager
 
-@if(product != null)
+@if (product != null)
 {
     <h3 class="card-header">Product for @product.ProductName</h3>
-    <EditForm Model="@product" OnValidSubmit="@HandleSave"></EditForm>
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="form-group">
-        <InputText PlaceHolder="Product Name" Class="form-control" id="productName" @bind-Value="@product.ProductName" />
-    </div>
-    <div class="form-group">
-        <InputNumber PlaceHolder="Price" Class="form-control" id="unitPrice" @bind-Value="@product.UnitPrice"   />
-    </div>
-    <div class="form-group">
-        <InputTextArea PlaceHolder="Quantity Per Unit" Class="form-control" id="quantityPerUnit" @bind-Value="@product.QuantityPerUnit" />
-    </div>
-    <div class="form-group">
-        <InputNumber PlaceHolder="Units In Stock" Class="form-control" id="unitsInStock" @bind-Value="@product.UnitsInStock" />
-    </div>
-    <div class="form-group">
-        @if(categories != null)
-        {
-            <InputSelectNumber Class="form-control" id="categoryId" @bind-Value="@product.CategoryId">
+    <EditForm Model="@product" OnValidSubmit="@HandleSave">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <InputText PlaceHolder="Product Name" Class="form-control" id="productName" @bind-Value="@product.ProductName" />
+            <ValidationMessage For="@(() => product.ProductName)" />
+        </div>
+        <div class="form-group">
+            <InputNumber PlaceHolder="Price" Class="form-control" id="unitPrice" @bind-Value="@product.UnitPrice" />
+            <ValidationMessage For="@(() => product.UnitPrice)" />
+        </div>
+        <div class="form-group">
+            <InputTextArea PlaceHolder="Quantity Per Unit" Class="form-control" id="quantityPerUnit" @bind-Value="@product.QuantityPerUnit" />
+            <ValidationMessage For="@(() => product.QuantityPerUnit)" />
+        </div>
+        <div class="form-group">
+            <InputNumber PlaceHolder="Units In Stock" Class="form-control" id="unitsInStock" @bind-Value="@product.UnitsInStock" />
+            <ValidationMessage For="@(() => product.UnitsInStock)" />
+        </div>
+        <div class="form-group">
+            @if (categories != null)
+            {
+                <InputSelectNumber Class="form-control" id="categoryId" @bind-Value="@product.CategoryId">
 
-                @foreach (var category in categories)
-                {
-                    <option value="@category.CategoryId">@category.CategoryName</option>
-                }
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.CategoryId">@category.CategoryName</option>
+                    }
 
-            </InputSelectNumber>
-        }
-    </div>
+                </InputSelectNumber>
+            }
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </EditForm>
 }
 
 

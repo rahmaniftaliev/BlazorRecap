@@ -30,7 +30,7 @@ namespace BlazorFrontEndProject.Services
 
         public async Task Save(ProductViewModel ProductViewModel)
         {
-            await _httpClient.PostAsJsonAsync("https://localhost:44347/api/products/add", ProductViewModel);
+            await _httpClient.PostAsJsonAsync("https://localhost:44347/api/products/update", ProductViewModel);
         }
     }
 }
